@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { useCart } from "@/context/CartContext";
-import { getProductImage } from "@/components/CartDrawer";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
@@ -95,7 +94,7 @@ const Checkout = () => {
             {field("address", "Address")}
             {field("city", "City")}
             <Button type="submit" className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-body tracking-wider py-6 mt-4">
-              Place Order — ${totalPrice.toFixed(2)}
+              Place Order — {items[0]?.product.currency ?? "PKR"} {totalPrice.toLocaleString()}
             </Button>
           </form>
 
@@ -104,18 +103,22 @@ const Checkout = () => {
             <div className="space-y-3">
               {items.map((item) => (
                 <div key={item.product.id} className="flex gap-3">
-                  <img src={getProductImage(item.product.images[0])} alt={item.product.name} className="w-12 h-12 rounded object-cover" />
+                  <img src={item.product.images[0]} alt={item.product.name} className="w-12 h-12 rounded object-cover" />
                   <div className="flex-1">
                     <p className="text-foreground font-body text-sm">{item.product.name}</p>
                     <p className="text-muted-foreground font-body text-xs">x{item.quantity}</p>
                   </div>
-                  <p className="text-primary font-body text-sm">${(item.product.price * item.quantity).toFixed(2)}</p>
+                  <p className="text-primary font-body text-sm">
+                    {item.product.currency} {(item.product.price * item.quantity).toLocaleString()}
+                  </p>
                 </div>
               ))}
             </div>
             <div className="border-t border-border mt-4 pt-4 flex justify-between">
               <span className="text-muted-foreground font-body">Total</span>
-              <span className="text-foreground font-heading text-lg">${totalPrice.toFixed(2)}</span>
+              <span className="text-foreground font-heading text-lg">
+                {items[0]?.product.currency ?? "PKR"} {totalPrice.toLocaleString()}
+              </span>
             </div>
           </div>
         </div>

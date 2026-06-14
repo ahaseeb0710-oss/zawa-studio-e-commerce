@@ -1,15 +1,16 @@
 import { useParams, Link } from "react-router-dom";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowLeft, ShoppingBag } from "lucide-react";
 import { products } from "@/data/products";
 import { useCart } from "@/context/CartContext";
-import { getProductImage } from "@/components/CartDrawer";
 import { Button } from "@/components/ui/button";
 
 const ProductDetail = () => {
   const { id } = useParams<{ id: string }>();
   const { addItem } = useCart();
   const product = products.find((p) => p.id === id);
+  const [activeImage, setActiveImage] = useState(0);
 
   if (!product) {
     return (
@@ -33,13 +34,30 @@ const ProductDetail = () => {
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            className="aspect-square rounded-xl overflow-hidden glass-card"
+            className="space-y-4"
           >
-            <img
-              src={getProductImage(product.images[0])}
-              alt={product.name}
-              className="w-full h-full object-cover"
-            />
+            <div className="aspect-square rounded-xl overflow-hidden glass-card">
+              <img
+                src={product.images[activeImage]}
+                alt={product.name}
+                className="w-full h-full object-cover"
+              />
+            </div>
+            {product.images.length > 1 && (
+              <div className="flex gap-3">
+                {product.images.map((img, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setActiveImage(i)}
+                    className={`w-20 h-20 rounded-md overflow-hidden border-2 transition-all ${
+                      activeImage === i ? "border-primary" : "border-border opacity-60 hover:opacity-100"
+                    }`}
+                  >
+                    <img src={img} alt="" className="w-full h-full object-cover" />
+                  </button>
+                ))}
+              </div>
+            )}
           </motion.div>
 
           <motion.div
@@ -52,7 +70,9 @@ const ProductDetail = () => {
               {product.category}
             </p>
             <h1 className="font-heading text-3xl sm:text-4xl text-foreground mb-4">{product.name}</h1>
-            <p className="text-primary font-heading text-2xl mb-6">${product.price}</p>
+            <p className="text-primary font-heading text-2xl mb-6">
+              {product.currency} {product.price.toLocaleString()}
+            </p>
             <p className="text-muted-foreground font-body leading-relaxed mb-8">{product.description}</p>
 
             <Button
@@ -64,7 +84,7 @@ const ProductDetail = () => {
 
             <div className="mt-8 pt-6 border-t border-border">
               <p className="text-muted-foreground font-body text-xs tracking-wider uppercase">
-                ✦ Handmade to order &nbsp; ✦ Premium yarn &nbsp; ✦ Ships in 5-7 days
+                ✦ Handmade to order &nbsp; ✦ Premium yarn &nbsp; ✦ Ships in 5–7 days
               </p>
             </div>
           </motion.div>

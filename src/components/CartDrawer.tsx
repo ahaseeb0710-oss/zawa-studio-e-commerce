@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 const CartDrawer = () => {
   const { items, isOpen, setIsOpen, removeItem, updateQuantity, totalPrice, clearCart } = useCart();
   const navigate = useNavigate();
+  const currency = items[0]?.product.currency ?? "PKR";
 
   return (
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
@@ -26,14 +27,16 @@ const CartDrawer = () => {
                 <div key={item.product.id} className="flex gap-4 p-3 rounded-lg border border-border">
                   <div className="w-16 h-16 rounded-md bg-secondary flex-shrink-0 overflow-hidden">
                     <img
-                      src={getProductImage(item.product.images[0])}
+                      src={item.product.images[0]}
                       alt={item.product.name}
                       className="w-full h-full object-cover"
                     />
                   </div>
                   <div className="flex-1 min-w-0">
                     <h4 className="font-heading text-sm text-foreground truncate">{item.product.name}</h4>
-                    <p className="text-primary font-body text-sm">${item.product.price}</p>
+                    <p className="text-primary font-body text-sm">
+                      {item.product.currency} {item.product.price.toLocaleString()}
+                    </p>
                     <div className="flex items-center gap-2 mt-1">
                       <button
                         onClick={() => updateQuantity(item.product.id, item.quantity - 1)}
@@ -63,7 +66,9 @@ const CartDrawer = () => {
             <div className="border-t border-border pt-4 space-y-3">
               <div className="flex justify-between font-body">
                 <span className="text-muted-foreground">Total</span>
-                <span className="text-foreground font-semibold text-lg">${totalPrice.toFixed(2)}</span>
+                <span className="text-foreground font-semibold text-lg">
+                  {currency} {totalPrice.toLocaleString()}
+                </span>
               </div>
               <Button
                 onClick={() => {
@@ -87,26 +92,5 @@ const CartDrawer = () => {
     </Sheet>
   );
 };
-
-// Helper to map product image keys to imported assets
-import productBag1 from "@/assets/product-bag-1.jpg";
-import productBag2 from "@/assets/product-bag-2.jpg";
-import productTop1 from "@/assets/product-top-1.jpg";
-import productCardigan1 from "@/assets/product-cardigan-1.jpg";
-import productHat1 from "@/assets/product-hat-1.jpg";
-import productPlushie1 from "@/assets/product-plushie-1.jpg";
-
-const imageMap: Record<string, string> = {
-  "product-bag-1": productBag1,
-  "product-bag-2": productBag2,
-  "product-top-1": productTop1,
-  "product-cardigan-1": productCardigan1,
-  "product-hat-1": productHat1,
-  "product-plushie-1": productPlushie1,
-};
-
-export function getProductImage(key: string): string {
-  return imageMap[key] || "";
-}
 
 export default CartDrawer;

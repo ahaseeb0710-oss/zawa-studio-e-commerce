@@ -4,7 +4,7 @@ import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { products } from "@/data/products";
 import ProductCard from "@/components/ProductCard";
-import heroBanner from "@/assets/hero-banner.jpg";
+import heroBanner from "@/assets/zawa/hero-image-BED3Zb5z.jpg";
 
 const Index = () => {
   const featured = products.slice(0, 4);
