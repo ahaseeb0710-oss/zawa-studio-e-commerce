@@ -34,6 +34,13 @@ import keychain6 from "@/assets/zawa/keychain6.jpeg";
 import chickkeychain3 from "@/assets/zawa/chickkeychain3.jpg";
 import chickkeychain2 from "@/assets/zawa/chickkeychain2.jpg";
 import keychain7 from "@/assets/zawa/keychain7.jpeg";
+import handbagPlain from "@/assets/zawa/handbag.jpeg";
+import insta4 from "@/assets/zawa/insta4.jpeg";
+import pearlwallet2 from "@/assets/zawa/pearlwallet2.jpg";
+import pearlwallet3 from "@/assets/zawa/pearlwallet3.jpg";
+import bouquet2 from "@/assets/zawa/bouquet2.jpeg";
+import sunflowerbouquet2 from "@/assets/zawa/sunflowerbouquet2.jpg";
+import tullip from "@/assets/zawa/tullip.jpeg";
 
 export type ProductCategory = "Bags" | "Wallets" | "Pouches" | "Phone Cases" | "Keychains" | "Bouquets";
 
