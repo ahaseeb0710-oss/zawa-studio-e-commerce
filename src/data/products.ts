@@ -34,6 +34,13 @@ import keychain6 from "@/assets/zawa/keychain6.jpeg";
 import chickkeychain3 from "@/assets/zawa/chickkeychain3.jpg";
 import chickkeychain2 from "@/assets/zawa/chickkeychain2.jpg";
 import keychain7 from "@/assets/zawa/keychain7.jpeg";
+import handbagPlain from "@/assets/zawa/handbag.jpeg";
+import insta4 from "@/assets/zawa/insta4.jpeg";
+import pearlwallet2 from "@/assets/zawa/pearlwallet2.jpg";
+import pearlwallet3 from "@/assets/zawa/pearlwallet3.jpg";
+import bouquet2 from "@/assets/zawa/bouquet2.jpeg";
+import sunflowerbouquet2 from "@/assets/zawa/sunflowerbouquet2.jpg";
+import tullip from "@/assets/zawa/tullip.jpeg";
 
 export type ProductCategory = "Bags" | "Wallets" | "Pouches" | "Phone Cases" | "Keychains" | "Bouquets";
 
@@ -48,6 +55,46 @@ export type Product = {
 };
 
 export const products: Product[] = [
+  {
+    id: "crochet-handbag",
+    name: "Crochet Handbag",
+    price: 2000,
+    currency: "PKR",
+    category: "Bags",
+    images: [handbagPlain],
+    description:
+      "A handmade crochet handbag made with durable yarn in a rich maroon color. It features a simple, stylish design with a secure button closure and a comfortable strap. Lightweight and unique — perfect for everyday use and adds a charming handmade touch to any outfit.",
+  },
+  {
+    id: "crochet-wallet-with-pearls",
+    name: "Crochet Wallet with Pearls",
+    price: 1200,
+    currency: "PKR",
+    category: "Wallets",
+    images: [insta4, pearlwallet2, pearlwallet3],
+    description:
+      "An elegant and unique handmade crochet wallet featuring soft pastel shades of purple, pink, and cream with a beautiful ruffle flap design. Carefully crafted with fine yarn — perfect for carrying cash, cards, and small essentials securely. The attached pearl-style handle adds a classy, stylish touch for both everyday use and special occasions.",
+  },
+  {
+    id: "crochet-sunflower-bouquet",
+    name: "Crochet Sunflower Bouquet",
+    price: 1500,
+    currency: "PKR",
+    category: "Bouquets",
+    images: [bouquet2, sunflowerbouquet2],
+    description:
+      "A handmade crochet sunflower bouquet made with soft yellow and brown yarn. Each sunflower is carefully crocheted with a round brown center and bright yellow petals, attached to green yarn stems with small leaves. Arranged into a neat bouquet and wrapped in elegant beige paper with a green yarn bow — a beautiful, long-lasting gift for birthdays, graduations, or special occasions.",
+  },
+  {
+    id: "crochet-tulips",
+    name: "Crochet Tulips",
+    price: 600,
+    currency: "PKR",
+    category: "Bouquets",
+    images: [tullip],
+    description:
+      "Charming handcrafted yarn tulips that offer a beautiful, everlasting alternative to real blooms. Each tulip features a vibrant, textured petal head in shades of red or maroon, supported by a sturdy green stem and delicate leaves. Soft, durable creations perfect for home decor, thoughtful gifts, or adding a cozy handmade touch to any space.",
+  },
   {
     id: "crochet-ruffle-handbag",
     name: "Crochet Ruffle Handbag",
